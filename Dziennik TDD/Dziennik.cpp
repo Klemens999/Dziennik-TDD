@@ -14,7 +14,7 @@ void GLog::deleteStudent(const Student& s) {
 	students.erase(std::remove(students.begin(),students.end(), s));
 };
 
-void GLog::addGrade(Student& s, int grade) {
+void GLog::addGrade(Student& s, double grade) {
 	s.grades.push_back(grade);
 };
 
@@ -27,11 +27,15 @@ double GLog::returnAverage(const Student& s) {
 };
 
 double GLog::returnClassAverage() {
-	double average{};
-	for (int i = 0; i < students.size(); i++) {
-		average += returnAverage(students[i]);
+	double sum{};
+	int numberOfGrades{};
+	for (auto& classmate : students) {
+		for (auto& grade : classmate.grades) {
+			sum += classmate.grades[grade];
+			numberOfGrades++;
+		}
 	}
-	return average;
+	return sum/numberOfGrades;
 };
 
 std::vector<Student> GLog::getStudents() const {

@@ -13,8 +13,8 @@ TEST(BasicGLogTest, CanReturnClassAverage) {
 	sut.addGrade(s2, 3);
 	sut.addGrade(s2, 3);
 
-	auto result = sut.returnClassAverage();
-	auto average = 3.25;
+	double result = sut.returnClassAverage();
+	double average = 3.25;
 	
 	EXPECT_EQ(result, average);
 }
