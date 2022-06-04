@@ -6,7 +6,7 @@ bool GLog::isEmpty() const {
 	return students.empty();
 };
 
-void GLog::addStudent(const Student& s) {
+void GLog::addStudent(Student& s) {
 	students.emplace_back(s);
 };
 
@@ -15,27 +15,28 @@ void GLog::deleteStudent(const Student& s) {
 };
 
 void GLog::addGrade(Student& s, double grade) {
-	s.grades.push_back(grade);
+	auto student = std::find(students.begin(), students.end(), s);
+	student->grades.push_back(grade);
 };
 
 std::vector<double> GLog::returnGrades(const Student& s) {
-	return s.grades;
+	auto student = std::find(students.begin(), students.end(), s);
+	return student->grades;
 };
 
 double GLog::returnAverage(const Student& s) {
-	return std::accumulate(s.grades.begin(), s.grades.end(), 0.0) / s.grades.size();
+	auto student = std::find(students.begin(), students.end(), s);
+	return std::accumulate(student->grades.begin(), student->grades.end(), 0.0) / student->grades.size();
 };
 
 double GLog::returnClassAverage() {
-	double sum{};
-	int numberOfGrades{};
-	for (auto& classmate : students) {
-		for (auto& grade : classmate.grades) {
-			sum += classmate.grades[grade];
+		double sum{};
+		double numberOfGrades{};
+		for (int i = 0; i < students.size(); i++) {
+			sum += returnAverage(students[i]);
 			numberOfGrades++;
 		}
-	}
-	return sum/numberOfGrades;
+		return sum/numberOfGrades;
 };
 
 std::vector<Student> GLog::getStudents() const {

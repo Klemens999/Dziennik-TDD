@@ -6,7 +6,7 @@ class GLog {
 	std::vector<Student> students{};
 public:
 	bool isEmpty() const;
-	void addStudent(const Student& s);
+	void addStudent(Student& s);
 	void deleteStudent(const Student& s);
 	void addGrade(Student& s, double grade);
 	double returnAverage(const Student& s);
