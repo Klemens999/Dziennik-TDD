@@ -3,13 +3,13 @@
 #include <vector>
 
 struct Student {
-	std::string imie{};
-	std::string nazwisko{};
+	std::string name{};
+	std::string surname{};
 	std::vector<double> grades{};
 
 	friend bool operator==(const Student& lhs, const Student& rhs)
 	{
-		return lhs.imie == rhs.imie && lhs.nazwisko == rhs.nazwisko;
+		return lhs.name == rhs.name && lhs.surname == rhs.surname;
 	}
 	friend bool operator!=(const Student& lhs, const Student& rhs)
 	{
